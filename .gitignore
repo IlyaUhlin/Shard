@@ -1,0 +1,113 @@
+# Bytecode и файлы интерпретатора
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Распределённые файлы (distutils / setuptools)
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Утилиты для тестирования и покрытия кода
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Базы данных
+*.db
+*.sqlite
+*.sqlite3
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+*.pid
+
+# Документация
+docs/_build/
+site/
+
+# Пакетные менеджеры
+pip-log.txt
+pip-delete-this-directory.txt
+pip-selfcheck.json
+# Poetry
+poetry.lock  # раскомментируй, если хочешь хранить lock-файл
+# Pipenv
+Pipfile.lock  # раскомментируй, если хочешь хранить lock-файл
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Файлы окружения
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
+
+# Файлы IDE (PyCharm и другие)
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# PyCharm specific
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/shelf/
+.idea/**/dataSources/
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/gradle.xml
+.idea/**/libraries/
+.idea/**/dictionaries
+.idea/**/userSettings.xml
+.idea/**/modules.xml
+
+# Файлы mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Профилирование
+.prof
+*.prof
+
+# Файлы отчётов
+*.html
+*.xml
+*.json
