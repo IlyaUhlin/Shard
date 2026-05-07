@@ -1,26 +1,41 @@
-
 class Entity:
+    _id_counter = 0
+
     def __init__(self):
-        self.energy = 0
-        self.x = -1
-        self.y = -1
+        Entity._id_counter += 1
+        self._id = Entity._id_counter
+        self._x = -1
+        self._y = -1
+        self._position = (self._x, self._y)
 
-    async def tick(self):
-        pass
+    @property
+    def id(self):
+        return self._id
 
-    def to_dict(self):
-        return {
-            "energy": self.energy,
-            "x": self.x,
-            "y": self.y
-        }
+    @property
+    def x(self):
+        return self._x
 
-    @classmethod
-    def from_dict(cls, data):
-        entity = cls()
-        if "energy" in data:
-            entity.energy = data["energy"]
-        if "x" in data:
-            entity.x = data["x"]
-            
-        entity.energy = data["energy"]
+    @x.setter
+    def x(self, value: int):
+        self._x = value
+        self._position = (self._x, self._y)
+
+    @property
+    def y(self):
+        return self._y
+
+    @y.setter
+    def y(self, value: int):
+        self._y = value
+        self._position = (self._x, self._y)
+
+    @property
+    def position(self):
+        return self._position
+
+    @position.setter
+    def position(self, position: tuple[int, int]):
+        self._position = position
+        self._x = position[0]
+        self._y = position[1]

@@ -1,6 +1,9 @@
 import json
 from asyncio import Lock
 
+from WORLD.models.entity import Entity
+from WORLD.models.serializers.entity_serializer import EntitySerializer
+
 
 class Repository:
     path: str = ""
@@ -29,8 +32,11 @@ class Storage(Repository):
 
     async def get_entity(self, entity_id: int):
         data = await self.read()
-        return data["entities"].get(entity_id)
+        entity_data = data["entities"].get(entity_id)
+        if entity_data:
+            return EntitySerializer.from_dict(entity_data)
+        return None
 
-    async def save_entity(self, entity: dict, entity_id: int):
+    async def save_entity(self, entity: Entity, entity_id: int):
         data = await self.read()
-        data["entities"][entity[entity_id]] = entity
+        data["entities"][entity_id] = EntitySerializer.to_dict(entity)
