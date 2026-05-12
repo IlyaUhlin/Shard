@@ -31,6 +31,9 @@ class Transaction:
         self.initiator_id = initiator_id
         self.executor_id = executor_id
         self.contract = contract
+        self.completed = False
+        self.result = None
+
 
 class TransactionPool:
     transactions: dict[int, Transaction] = {}
@@ -42,9 +45,15 @@ class TransactionPool:
         return transaction.id
 
     @classmethod
-    def complete(cls, transaction_id: int) -> None:
+    def complete(cls, transaction_id: int, result=None) -> None:
         transaction: Transaction = cls._get_transaction(transaction_id)
-        pass
+        if transaction:
+            transaction.completed = True
+            transaction.result = result
+
+    @classmethod
+    def get_transaction(cls, transaction_id: int) -> Transaction | None:
+        return cls._get_transaction(transaction_id)
 
     @classmethod
     def get_transaction_contract(cls, transaction_id: int) -> Contract | None:
@@ -53,7 +62,13 @@ class TransactionPool:
             return transaction.contract
         return None
 
+    @classmethod
+    def get_pending_transactions(cls) -> list[Transaction]:
+        return [t for t in cls.transactions.values() if not t.completed]
 
+    @classmethod
+    def clear_completed(cls) -> None:
+        cls.transactions = {k: v for k, v in cls.transactions.items() if not v.completed}
 
     @classmethod
     def _get_transaction(cls, id_: int):
