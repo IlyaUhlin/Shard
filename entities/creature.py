@@ -1,4 +1,4 @@
-from WORLD.models.entity import Entity
+from entities.entity import Entity
 
 
 class Creature(Entity):

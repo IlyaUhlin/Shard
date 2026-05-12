@@ -1,6 +1,6 @@
-from WORLD.models.creature import Creature
-from WORLD.models.wall import Wall
-from WORLD.models.energy_source import EnergySource
+from entities.creature import Creature
+from entities.wall import Wall
+from entities.energy_source import EnergySource
 
 class EntitySerializer:
     @staticmethod

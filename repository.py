@@ -1,8 +1,8 @@
 import json
 from asyncio import Lock
 
-from WORLD.models.entity import Entity
-from WORLD.models.serializers.entity_serializer import EntitySerializer
+from entities.entity import Entity
+from core.serializers.entity_serializer import EntitySerializer
 
 
 class Repository:
