@@ -2,6 +2,7 @@ import argparse
 import sys
 
 from core.game_loop import GameLoop
+from visualizer import run_visual
 
 
 def main():
@@ -13,12 +14,20 @@ def main():
     parser.add_argument("--ticks", type=int, default=100, help="Maximum number of ticks")
     parser.add_argument("--save", type=str, help="Save world to file after simulation")
     parser.add_argument("--load", type=str, help="Load world from file before simulation")
+    parser.add_argument("--visual", action="store_true", help="Run in visual mode with curses interface")
     
     args = parser.parse_args()
 
     if args.load:
         game = GameLoop.__new__(GameLoop)
-        if game.load(args.load):
+        if not game.load(args.load):
+            print("Failed to load world")
+            sys.exit(1)
+        
+        if args.visual:
+            game.start()
+            run_visual(game)
+        else:
             game.run(max_ticks=args.ticks)
             if args.save:
                 game.save(args.save)
@@ -29,9 +38,14 @@ def main():
             num_creatures=args.creatures,
             num_energy_sources=args.energy_sources
         )
-        game.run(max_ticks=args.ticks)
-        if args.save:
-            game.save(args.save)
+        
+        if args.visual:
+            game.start()
+            run_visual(game)
+        else:
+            game.run(max_ticks=args.ticks)
+            if args.save:
+                game.save(args.save)
 
 
 if __name__ == "__main__":

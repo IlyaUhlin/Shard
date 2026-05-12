@@ -10,6 +10,7 @@ A Python-based world simulation with creatures, energy sources, and a transactio
 - **Transaction System**: Action contracts (move, look, absorb) processed through a dispatcher
 - **Save/Load**: Persist world state to JSON files
 - **CLI Interface**: Run simulations from command line
+- **🎮 Visual Mode**: Real-time curses-based visualization with interactive controls
 
 ## Project Structure
 
@@ -33,6 +34,7 @@ A Python-based world simulation with creatures, energy sources, and a transactio
 ├── STORAGE/
 │   └── storage.py          # Storage module (placeholder)
 ├── repository.py           # Data persistence layer
+├── visualizer.py           # 🎮 Curses-based visualizer
 └── README.md               # This file
 ```
 
@@ -40,9 +42,31 @@ A Python-based world simulation with creatures, energy sources, and a transactio
 
 No external dependencies required. Uses Python 3.10+ standard library.
 
+For Windows users, you may need to install windows-curses:
+```bash
+pip install windows-curses
+```
+
 ## Usage
 
-### Run a simulation:
+### 🎮 Visual Mode (Recommended)
+Run with interactive graphical interface:
+```bash
+python -m CLI.cli --visual
+```
+
+**Visual Mode Controls:**
+- **Space** - Pause/Resume
+- **Q** - Quit
+- **+/-** - Increase/Decrease speed
+- **1-9** - Select creature to observe
+- **Arrow Keys** - Move selected creature (God mode)
+- **S** - Save current state
+- **R** - Restart world
+- **H** - Help
+
+### 💻 Console Mode
+Run simulation without graphics:
 ```bash
 python -m CLI.cli --width 20 --height 20 --creatures 5 --energy-sources 10 --ticks 100
 ```
@@ -57,6 +81,11 @@ python -m CLI.cli --creatures 10 --ticks 50 --save my_world.json
 python -m CLI.cli --load my_world.json --ticks 50
 ```
 
+### Load in visual mode:
+```bash
+python -m CLI.cli --load my_world.json --visual
+```
+
 ### CLI Options:
 - `--width`: World width (default: 20)
 - `--height`: World height (default: 20)
@@ -65,6 +94,7 @@ python -m CLI.cli --load my_world.json --ticks 50
 - `--ticks`: Maximum simulation ticks (default: 100)
 - `--save`: Save world to file after simulation
 - `--load`: Load world from file before simulation
+- `--visual`: 🎮 Run in visual mode with curses interface
 
 ## Game Mechanics
 
@@ -114,7 +144,6 @@ The project uses a branch-based workflow. Current development happens in the `de
 
 ## Future Enhancements
 
-- [ ] Visual rendering (pygame, terminal UI)
 - [ ] Creature AI improvements (pathfinding, memory)
 - [ ] Breeding/reproduction system
 - [ ] Different creature types
@@ -122,3 +151,4 @@ The project uses a branch-based workflow. Current development happens in the `de
 - [ ] Statistics and analytics
 - [ ] Multi-threaded simulation
 - [ ] Network multiplayer mode
+- [ ] Web-based UI
